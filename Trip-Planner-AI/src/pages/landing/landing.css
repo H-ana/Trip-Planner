@@ -1,0 +1,50 @@
+.landing {
+    background-image: url("../../images/landingimg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+
+
+.landing_title {
+    color: #03045e;
+    font-size: 7rem;
+    font-family: 'Open Sans';
+    font-weight: bolder;
+}
+
+.landing_tagline {
+    color: #03045e;
+    font-size: 1.25rem;
+    font-family: 'Poppins';
+    padding-bottom: 2.5rem;
+}
+
+a{
+    text-decoration: none;
+}
+
+.landing_loginbtn {
+    padding: 10px 30px 10px 30px;
+    background-color: #0077b6;
+    color: mintcream;
+    border: none;
+    border-radius: 20px;
+    width: 10rem;
+    height: auto;
+    cursor: pointer;
+    font-size: 1rem;
+
+}

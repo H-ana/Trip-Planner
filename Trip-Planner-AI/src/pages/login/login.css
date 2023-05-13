@@ -1,0 +1,85 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}
+
+.loginlogo{
+    display: block;
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    position: relative;
+}
+
+.login {
+    background-image: url('../../images/landingimg.png');
+    background-size: cover;
+    font-family: 'Poppins';
+}
+
+.switching {
+    width: 15rem;
+    text-align: center;
+}
+
+.switching a {
+    color: #03045e;
+    font-weight: 600;
+}
+
+.switching a:hover {
+    cursor: pointer;
+}
+
+.login-container h1 {
+    margin-bottom: 1rem;
+    font-family: 'Poppins';
+    color: #03045e;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #edf3f055;
+    border-radius: 10%;
+    font-family: 'Poppins';
+    height: 24rem;
+    padding: 1.5rem;
+    width: 18rem;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #03045e;
+}
+
+input {
+    width: 10rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 0.4rem;
+}
+
+.login-container button[type="submit"] {
+    background-color: #0077b6;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 7.5rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #0077b6;
+}

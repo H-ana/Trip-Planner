@@ -1,0 +1,58 @@
+.home {
+    background-image: url("../../images/landingimg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+
+
+.home_title {
+    color: #03045e;
+    font-size: 7rem;
+    font-family: 'Open Sans';
+    font-weight: bolder;
+}
+
+.home_tagline {
+    color: #03045e;
+    font-size: 1.25rem;
+    font-family: 'Poppins';
+    padding-bottom: 2.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.startinput {
+    background-color: #edf3f08f;
+    padding: 12px;
+    border-radius: 10px;
+    margin-right: 8px;
+}
+
+button {
+    padding: 12px;
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
