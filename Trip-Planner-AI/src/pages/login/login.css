@@ -50,7 +50,7 @@
     background-color: #edf3f055;
     border-radius: 10%;
     font-family: 'Poppins';
-    height: 24rem;
+    height: 30rem;
     padding: 1.5rem;
     width: 18rem;
 }
@@ -89,4 +89,35 @@ button[type="submit"]:hover {
         border: 1px solid #F1A7A0;
         color: #C9243F;
         padding: 10px;
+}
+
+.or{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.google-sign-in-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #000;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.google-sign-in-button:hover {
+    background-color: #eee;
+}
+
+.google-sign-in-button__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }

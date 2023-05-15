@@ -1,10 +1,12 @@
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import logo from '../../images/loginimg.png';
-import {auth} from '../../firebase';
+import {auth, provider} from '../../firebase';
+import {signInWithPopup} from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth"; 
 import { createUserWithEmailAndPassword } from "firebase/auth";
+
 
 function Login() {
   const navigate = useNavigate();
@@ -85,7 +87,18 @@ function Login() {
         setErrorMsg("Failed to create user");
       });
   };
+  const [val,setVal] = useState('')
+    const handleClick =()=>{
+        signInWithPopup(auth,provider).then((data)=>{
+            setVal(data.user.email)
+            localStorage.setItem("email",data.user.email)
+            navigate("/home");
+        })
+    }
 
+    useEffect(()=>{
+        setVal(localStorage.getItem('email'))
+        })
   return (
     <div className="login">
       {value === false && (
@@ -114,6 +127,16 @@ function Login() {
             <button type="submit">
               Login
             </button>
+            <p className="or">or</p>
+            <div>
+            <button className="google-sign-in-button" onClick={handleClick}>
+            <img className="google-sign-in-button__icon"
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google"
+            />
+      Sign in with Google
+    </button>
+            </div>
             <p className="switching">
               Not a member ? <a onClick={buttonHandler}>Signup</a>
             </p>
@@ -123,7 +146,7 @@ function Login() {
       )}
       {value === true && (
         <div className="login-container">
-          <form style={{height: "30rem"}} onSubmit={signUp}> 
+          <form onSubmit={signUp}> 
             <img className="loginlogo" src={logo} alt="Login"/>
             {errorMsg && (<div className="error-message">{errorMsg}</div>)}
             <label htmlFor="email">Email</label>
