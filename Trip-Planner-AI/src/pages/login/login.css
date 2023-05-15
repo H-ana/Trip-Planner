@@ -83,3 +83,10 @@ input {
 button[type="submit"]:hover {
     background-color: #0077b6;
 }
+
+.error-message {
+        background-color: #FCE8E8;
+        border: 1px solid #F1A7A0;
+        color: #C9243F;
+        padding: 10px;
+}

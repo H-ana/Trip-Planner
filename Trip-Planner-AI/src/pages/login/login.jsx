@@ -1,8 +1,13 @@
-import { useState } from "react";
+import React,{ useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import logo from '../../images/loginimg.png';
+import {auth} from '../../firebase';
+import { signInWithEmailAndPassword } from "firebase/auth"; 
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -13,7 +18,19 @@ function Login() {
     email: "",
     password: "",
   });
-
+  const [errorMsg, setErrorMsg] = useState("");
+  const [errorMesg, setErrorMesg] = useState("");
+  const resetForm = () => {
+    setUser({
+      email: "",
+      password: "",
+      username: "",
+    });
+    setPerson({
+      email: "",
+      password: "",
+    });
+  };
   const [value, setValue] = useState(false);
   const buttonHandler = () => {
     if (value === false) {
@@ -21,23 +38,61 @@ function Login() {
     } else {
       setValue(false);
     }
+    resetForm();
   };
   const handleChangeSignup = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
+    setErrorMsg("");
   };
   const handleChangeLogin = (e) => {
     const { name, value } = e.target;
     setPerson({ ...person, [name]: value });
+    setErrorMesg("");
   };
-
+  const signIn = (e) => {
+    if (!person.email || !person.password) {
+      setErrorMesg("Fill all fields");
+      return;
+    }
+    setErrorMesg("");
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, person.email, person.password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        navigate("/home");
+        resetForm();
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMesg("Invalid login credentials");
+      });
+  };
+  const signUp = (e) => {
+    if (!user.username || !user.email || !user.password) {
+      setErrorMsg("Fill all fields");
+      return;
+    }
+    setErrorMsg("");
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, user.email, user.password)
+      .then((userCredential) => {
+        console.log(userCredential);
+        resetForm();
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorMsg("Failed to create user");
+      });
+  };
 
   return (
     <div className="login">
       {value === false && (
         <div className="login-container">
-          <form>
+          <form onSubmit={signIn}>
             <img className="loginlogo" src={logo} alt="Login"/>
+            {errorMesg && (<div className="error-message">{errorMesg}</div>)}
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -63,12 +118,14 @@ function Login() {
               Not a member ? <a onClick={buttonHandler}>Signup</a>
             </p>
           </form>
+          
         </div>
       )}
       {value === true && (
         <div className="login-container">
-          <form style={{height: "30rem"}}> 
+          <form style={{height: "30rem"}} onSubmit={signUp}> 
             <img className="loginlogo" src={logo} alt="Login"/>
+            {errorMsg && (<div className="error-message">{errorMsg}</div>)}
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -100,9 +157,10 @@ function Login() {
               Signup
             </button>
             <p className="switching">
-              Already a user ? <a onClick={buttonHandler}>Login</a>
+              Already a user ? <a onClick={buttonHandler} >Login</a>
             </p>
           </form>
+          
         </div>
       )}
     </div>
